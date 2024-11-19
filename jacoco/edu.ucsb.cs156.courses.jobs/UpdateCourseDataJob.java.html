@@ -40,7 +40,7 @@ public class UpdateCourseDataJob implements JobContextConsumer {
 <span class="fc bfc" id="L40" title="All 2 branches covered.">        if (ifStale) {</span>
 <span class="fc bfc" id="L41" title="All 2 branches covered.">          if (!isStale) {</span>
 
-            //ctx.log(&quot;Data is not stale for [&quot; + subjectArea + &quot; &quot; + quarterYYYYQ + &quot;]&quot;);
+<span class="fc" id="L43">            ctx.log(&quot;Data is not stale for [&quot; + subjectArea + &quot; &quot; + quarterYYYYQ + &quot;]&quot;);</span>
 <span class="fc" id="L44">            continue;</span>
           }
         }
@@ -63,8 +63,8 @@ public class UpdateCourseDataJob implements JobContextConsumer {
 <span class="fc" id="L63">    List&lt;ConvertedSection&gt; convertedSections =</span>
 <span class="fc" id="L64">        ucsbCurriculumService.getConvertedSections(subjectArea, quarterYYYYQ, &quot;A&quot;);</span>
 
-    //ctx.log(&quot;Found &quot; + convertedSections.size() + &quot; sections&quot;);
-    //ctx.log(&quot;Storing in MongoDB Collection...&quot;);
+<span class="fc" id="L66">    ctx.log(&quot;Found &quot; + convertedSections.size() + &quot; sections&quot;);</span>
+<span class="fc" id="L67">    ctx.log(&quot;Storing in MongoDB Collection...&quot;);</span>
 
 <span class="fc" id="L69">    int newSections = 0;</span>
 <span class="fc" id="L70">    int updatedSections = 0;</span>
@@ -87,21 +87,20 @@ public class UpdateCourseDataJob implements JobContextConsumer {
 <span class="fc" id="L87">          newSections++;</span>
         }
 <span class="fc" id="L89">      } catch (Exception e) {</span>
-        //ctx.log(&quot;Error saving section: &quot; + e.getMessage());
+<span class="fc" id="L90">        ctx.log(&quot;Error saving section: &quot; + e.getMessage());</span>
 <span class="fc" id="L91">        errors++;</span>
 <span class="fc" id="L92">      }</span>
 <span class="fc" id="L93">    }</span>
- 
+
 <span class="fc" id="L95">    Update savedUpdate =</span>
 <span class="fc" id="L96">        updateUpdatesCollection(quarterYYYYQ, subjectArea, newSections, updatedSections, errors);</span>
-    
+
 <span class="fc" id="L98">    ctx.log(</span>
 <span class="fc" id="L99">        String.format(</span>
             &quot;%d new sections saved, %d sections updated, %d errors, last update: %s&quot;,
 <span class="fc" id="L101">            newSections, updatedSections, errors, savedUpdate.getLastUpdate()));</span>
 <span class="fc" id="L102">    ctx.log(&quot;Saved update: &quot; + savedUpdate);</span>
-    //ctx.log(&quot;Courses for [&quot; + subjectArea + &quot; &quot; + quarterYYYYQ + &quot;] have been updated&quot;);
-
-<span class="fc" id="L105">  }</span>
+<span class="fc" id="L103">    ctx.log(&quot;Courses for [&quot; + subjectArea + &quot; &quot; + quarterYYYYQ + &quot;] have been updated&quot;);</span>
+<span class="fc" id="L104">  }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>
