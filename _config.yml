@@ -1,4 +1,3 @@
-
 title: Documentation
 description: >- # this means to ignore newlines until "baseurl:"
   When reviewing a PR for this repo, you can see what the documentation,
@@ -18,9 +17,7 @@ collections:
     permalink: /branches/:path/
 
 repo_name: "TBD"
-
-
 repo: ucsb-cs156-f24/proj-courses-f24-03
 owner: ucsb-cs156-f24
 repo_name: proj-courses-f24-03
-pull_requests: [{"author":{"id":"MDQ6VXNlcjQzMTg5MjU5","is_bot":false,"login":"SameerSRao","name":"Sameer Rao"},"headRefName":"Sameer-Link-Log","number":31,"title":"Add Link to Detailed Log Page","url":"https://github.com/ucsb-cs156-f24/proj-courses-f24-03/pull/31"},{"author":{"id":"MDQ6VXNlcjQzMTg5MjU5","is_bot":false,"login":"SameerSRao","name":"Sameer Rao"},"headRefName":"Sameer-Detailed-Log","number":29,"title":"Detailed log page for long running jobs","url":"https://github.com/ucsb-cs156-f24/proj-courses-f24-03/pull/29"},{"author":{"id":"MDQ6VXNlcjQzMTg5MjU5","is_bot":false,"login":"SameerSRao","name":"Sameer Rao"},"headRefName":"Sameer-Truncate-Log","number":27,"title":"Truncates logs of long running jobs","url":"https://github.com/ucsb-cs156-f24/proj-courses-f24-03/pull/27"}]
+pull_requests: [{"author":{"id":"U_kgDOBtzY9A","is_bot":false,"login":"pballani","name":""},"headRefName":"priyanka-duplicate-sections","number":42,"title":"Priyanka duplicate sections","url":"https://github.com/ucsb-cs156-f24/proj-courses-f24-03/pull/42"},{"author":{"id":"MDQ6VXNlcjQzMTg5MjU5","is_bot":false,"login":"SameerSRao","name":"Sameer Rao"},"headRefName":"Sameer-Link-Log","number":31,"title":"Add Link to Detailed Log Page","url":"https://github.com/ucsb-cs156-f24/proj-courses-f24-03/pull/31"},{"author":{"id":"MDQ6VXNlcjQzMTg5MjU5","is_bot":false,"login":"SameerSRao","name":"Sameer Rao"},"headRefName":"Sameer-Detailed-Log","number":29,"title":"Detailed log page for long running jobs","url":"https://github.com/ucsb-cs156-f24/proj-courses-f24-03/pull/29"}]
