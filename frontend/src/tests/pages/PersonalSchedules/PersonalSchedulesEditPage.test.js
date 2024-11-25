@@ -233,7 +233,9 @@ describe("PersonalSchedulesEditPage tests", () => {
     });
 
     test("when backend runs into an error, correct toast messages pops up", async () => {
-      axiosMock.onPut("/api/personalschedules").reply(500, { message: "The backend has run into an error!" });
+      axiosMock
+        .onPut("/api/personalschedules")
+        .reply(500, { message: "The backend has run into an error!" });
       render(
         <QueryClientProvider client={queryClient}>
           <MemoryRouter>
@@ -241,7 +243,9 @@ describe("PersonalSchedulesEditPage tests", () => {
           </MemoryRouter>
         </QueryClientProvider>,
       );
-      expect(await screen.findByText("Edit Personal Schedule")).toBeInTheDocument();
+      expect(
+        await screen.findByText("Edit Personal Schedule"),
+      ).toBeInTheDocument();
       const nameField = screen.getByTestId("PersonalScheduleForm-name");
       fireEvent.change(nameField, { target: { value: "Edited name!" } });
 
@@ -249,14 +253,14 @@ describe("PersonalSchedulesEditPage tests", () => {
       expect(idField).toBeInTheDocument();
       expect(idField).toHaveValue("17");
 
-
       const submitField = screen.getByTestId("PersonalScheduleForm-submit");
       expect(submitField).toBeInTheDocument();
       fireEvent.click(submitField);
 
       await waitFor(() => expect(axiosMock.history.put.length).toBe(1));
-      expect(mockToast).toHaveBeenCalledWith("Error: The backend has run into an error!");
-
+      expect(mockToast).toHaveBeenCalledWith(
+        "Error: The backend has run into an error!",
+      );
     });
 
     test("renders without crashing for user", () => {
