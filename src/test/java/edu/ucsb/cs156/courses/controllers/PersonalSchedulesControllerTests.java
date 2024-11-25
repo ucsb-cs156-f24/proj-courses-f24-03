@@ -872,7 +872,8 @@ public class PersonalSchedulesControllerTests extends ControllerTestCase {
             .andReturn();
 
     Map<String, Object> json = responseToJson(response);
-    assertEquals("A personal schedule with that name already exists in that quarter", json.get("message"));
+    assertEquals(
+        "A personal schedule with that name already exists in that quarter", json.get("message"));
   }
 
   @WithMockUser(roles = {"ADMIN", "USER"})
@@ -910,8 +911,7 @@ public class PersonalSchedulesControllerTests extends ControllerTestCase {
 
     when(personalscheduleRepository.findByIdAndUser(0L, thisUser))
         .thenReturn(Optional.of(existingSchedule));
-    when(personalscheduleRepository.findByUserAndNameAndQuarter(
-            thisUser, "Name 2", "20222"))
+    when(personalscheduleRepository.findByUserAndNameAndQuarter(thisUser, "Name 2", "20222"))
         .thenReturn(Optional.of(conflictingNameSchedule));
     String requestBody = mapper.writeValueAsString(editedNameSchedule);
     // act
@@ -927,7 +927,8 @@ public class PersonalSchedulesControllerTests extends ControllerTestCase {
             .andReturn();
 
     Map<String, Object> json = responseToJson(response);
-    assertEquals("A personal schedule with that name already exists in that quarter", json.get("message"));
+    assertEquals(
+        "A personal schedule with that name already exists in that quarter", json.get("message"));
   }
 
   @WithMockUser(roles = {"ADMIN"})
@@ -962,8 +963,7 @@ public class PersonalSchedulesControllerTests extends ControllerTestCase {
             .build();
 
     when(personalscheduleRepository.findById(0L)).thenReturn(Optional.of(existingSchedule));
-    when(personalscheduleRepository.findByUserAndNameAndQuarter(
-            thisUser, "Name 2", "20222"))
+    when(personalscheduleRepository.findByUserAndNameAndQuarter(thisUser, "Name 2", "20222"))
         .thenReturn(Optional.of(conflictingNameSchedule));
     String requestBody = mapper.writeValueAsString(editedNameSchedule);
     // act
@@ -979,6 +979,7 @@ public class PersonalSchedulesControllerTests extends ControllerTestCase {
             .andReturn();
 
     Map<String, Object> json = responseToJson(response);
-    assertEquals("A personal schedule with that name already exists in that quarter", json.get("message"));
+    assertEquals(
+        "A personal schedule with that name already exists in that quarter", json.get("message"));
   }
 }
