@@ -853,27 +853,26 @@ public class PersonalSchedulesControllerTests extends ControllerTestCase {
 
     PersonalSchedule expectedSchedule =
         PersonalSchedule.builder()
-            .name("TestName")
-            .description("uniquedescription1")
+            .name("Name1")
+            .description("Description1")
             .quarter("20222")
             .user(thisUser)
             .id(0L)
             .build();
-    when(personalscheduleRepository.findByUserAndNameAndQuarter(thisUser, "TestName", "20222"))
+    when(personalscheduleRepository.findByUserAndNameAndQuarter(thisUser, "Name1", "20222"))
         .thenReturn(Optional.of(expectedSchedule));
 
     // act
     MvcResult response =
         mockMvc
             .perform(
-                post("/api/personalschedules/post?name=TestName&description=uniquedescrition1&quarter=20222")
+                post("/api/personalschedules/post?name=Name1&description=Description1&quarter=20222")
                     .with(csrf()))
             .andExpect(status().isBadRequest())
             .andReturn();
 
     Map<String, Object> json = responseToJson(response);
-    assertEquals(
-        "A personal schedule with that name already exists in that quarter", json.get("message"));
+    assertEquals("A personal schedule with that name already exists in that quarter", json.get("message"));
   }
 
   @WithMockUser(roles = {"ADMIN", "USER"})
@@ -928,8 +927,7 @@ public class PersonalSchedulesControllerTests extends ControllerTestCase {
             .andReturn();
 
     Map<String, Object> json = responseToJson(response);
-    assertEquals(
-        "A personal schedule with that name already exists in that quarter", json.get("message"));
+    assertEquals("A personal schedule with that name already exists in that quarter", json.get("message"));
   }
 
   @WithMockUser(roles = {"ADMIN"})
@@ -981,7 +979,6 @@ public class PersonalSchedulesControllerTests extends ControllerTestCase {
             .andReturn();
 
     Map<String, Object> json = responseToJson(response);
-    assertEquals(
-        "A personal schedule with that name already exists in that quarter", json.get("message"));
+    assertEquals("A personal schedule with that name already exists in that quarter", json.get("message"));
   }
 }
