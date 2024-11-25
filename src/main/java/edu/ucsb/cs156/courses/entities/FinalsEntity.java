@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.LastModifiedDate;
 
 @Data
 @Builder
@@ -19,4 +20,5 @@ public class FinalsEntity {
   private String comments;
   private LocalDateTime finalExamStart;
   private LocalDateTime finalExamEnd;
+  @LastModifiedDate private LocalDateTime lastModified;
 }
