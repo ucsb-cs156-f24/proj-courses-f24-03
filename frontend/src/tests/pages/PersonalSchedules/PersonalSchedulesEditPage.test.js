@@ -232,6 +232,33 @@ describe("PersonalSchedulesEditPage tests", () => {
       ); // posted object
     });
 
+    test("when backend runs into an error, correct toast messages pops up", async () => {
+      axiosMock.onPut("/api/personalschedules").reply(500, { message: "The backend has run into an error!" });
+      render(
+        <QueryClientProvider client={queryClient}>
+          <MemoryRouter>
+            <PersonalSchedulesEditPage />
+          </MemoryRouter>
+        </QueryClientProvider>,
+      );
+      expect(await screen.findByText("Edit Personal Schedule")).toBeInTheDocument();
+      const nameField = screen.getByTestId("PersonalScheduleForm-name");
+      fireEvent.change(nameField, { target: { value: "Edited name!" } });
+
+      const idField = screen.getByTestId("PersonalScheduleForm-id");
+      expect(idField).toBeInTheDocument();
+      expect(idField).toHaveValue("17");
+
+
+      const submitField = screen.getByTestId("PersonalScheduleForm-submit");
+      expect(submitField).toBeInTheDocument();
+      fireEvent.click(submitField);
+
+      await waitFor(() => expect(axiosMock.history.put.length).toBe(1));
+      expect(mockToast).toHaveBeenCalledWith("Error: The backend has run into an error!");
+
+    });
+
     test("renders without crashing for user", () => {
       const queryClient = new QueryClient();
       axiosMock.onGet("/api/courses/user/all").reply(200, []);
