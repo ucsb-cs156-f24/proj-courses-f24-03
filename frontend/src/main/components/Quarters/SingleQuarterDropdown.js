@@ -20,6 +20,7 @@ function SingleQuarterDropdown({
   controlId,
   onChange = null,
   label = "Quarter",
+  showAll = false,
 }) {
   const lastInd = quarters.length - 1;
 
@@ -31,7 +32,9 @@ function SingleQuarterDropdown({
 
   const [quarterState, setQuarterState] = useState(
     // Stryker disable next-line all : not sure how to test/mock local storage
-    quarter.yyyyq || localSearchQuarter || quarters[lastInd].yyyyq,
+    showAll
+      ? "ALL"
+      : quarter?.yyyyq || localSearchQuarter || quarters[lastInd]?.yyyyq,
   );
 
   const handleQuarterOnChange = (event) => {
@@ -53,6 +56,11 @@ function SingleQuarterDropdown({
         value={quarterState}
         onChange={handleQuarterOnChange}
       >
+        {showAll && (
+          <option data-testid={`${controlId}-option-all`} value="ALL">
+            ALL
+          </option>
+        )}
         {quarters.map(function (object, i) {
           const key = `${controlId}-option-${i}`;
           return (

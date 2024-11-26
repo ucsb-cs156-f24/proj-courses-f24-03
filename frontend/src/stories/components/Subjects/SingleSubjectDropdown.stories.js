@@ -40,3 +40,21 @@ export const AllTheSubjects = Template.bind({});
 AllTheSubjects.args = {
   subjects: allTheSubjects,
 };
+
+export const OneSubjectShowAll = Template.bind({});
+OneSubjectShowAll.args = {
+  subjects: oneSubject,
+  showAll: true,
+};
+
+export const ThreeSubjectsShowAll = Template.bind({});
+ThreeSubjectsShowAll.args = {
+  subjects: threeSubjects,
+  showAll: true,
+};
+
+export const AllTheSubjectsShowAll = Template.bind({});
+AllTheSubjectsShowAll.args = {
+  subjects: allTheSubjects,
+  showAll: true,
+};

@@ -75,6 +75,18 @@ describe("SingleSubjectDropdown tests", () => {
     }
   });
 
+  test("renders without crashing on all subjects", () => {
+    render(
+      <SingleSubjectDropdown
+        subjects={threeSubjects}
+        subject={subject}
+        setSubject={setSubject}
+        controlId="ssd1"
+        showAll={true}
+      />,
+    );
+  });
+
   test("sorts and puts hyphens in testids", () => {
     render(
       <SingleSubjectDropdown

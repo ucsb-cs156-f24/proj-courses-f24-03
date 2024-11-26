@@ -37,3 +37,21 @@ export const ManyQuarters = Template.bind({});
 ManyQuarters.args = {
   quarters: quarterRange("20081", "20213"),
 };
+
+export const OneQuarterShowAll = Template.bind({});
+OneQuarterShowAll.args = {
+  quarters: quarterRange("20211", "20211"),
+  showAll: true,
+};
+
+export const ThreeQuartersShowAll = Template.bind({});
+ThreeQuartersShowAll.args = {
+  quarters: quarterRange("20204", "20212"),
+  showAll: true,
+};
+
+export const ManyQuartersShowAll = Template.bind({});
+ManyQuartersShowAll.args = {
+  quarters: quarterRange("20081", "20213"),
+  showAll: true,
+};

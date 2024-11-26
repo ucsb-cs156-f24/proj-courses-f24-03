@@ -44,6 +44,18 @@ describe("SingleQuarterSelector tests", () => {
     );
   });
 
+  test("renders without crashing on all quarters", () => {
+    render(
+      <SingleQuarterDropdown
+        quarters={quarterRange("20214", "20222")}
+        quarter={quarter}
+        setQuarter={setQuarter}
+        controlId="sqd1"
+        showAll={true}
+      />,
+    );
+  });
+
   test("when I select an object, the value changes", async () => {
     render(
       <SingleQuarterDropdown
