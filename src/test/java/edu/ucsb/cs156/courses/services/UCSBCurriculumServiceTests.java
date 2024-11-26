@@ -9,6 +9,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import edu.ucsb.cs156.courses.documents.ConvertedSection;
 import edu.ucsb.cs156.courses.documents.CoursePageFixtures;
+import edu.ucsb.cs156.courses.documents.FinalsFixtures;
 import edu.ucsb.cs156.courses.documents.PersonalSectionsFixtures;
 import edu.ucsb.cs156.courses.documents.SectionFixtures;
 import java.util.List;
@@ -294,6 +295,32 @@ public class UCSBCurriculumServiceTests {
         .andRespond(withSuccess("null", MediaType.APPLICATION_JSON));
 
     String result = ucs.getAllSections(enrollCode, quarter);
+    assertEquals(expectedResult, result);
+  }
+
+  @Test
+  public void test_getFinals_success() throws Exception {
+    String expectedResult = FinalsFixtures.FINAL_JSON_ARTHI5B;
+    // String expectedResult = "expected Result";
+
+    String enrollCode = "59501";
+    String quarter = "20221";
+
+    String expectedURL =
+        UCSBCurriculumService.FINALS_ENDPOINT
+            .replace("{quarter}", quarter)
+            .replace("{enrollcode}", enrollCode);
+
+    this.mockRestServiceServer
+        .expect(requestTo(expectedURL))
+        .andExpect(header("Accept", MediaType.APPLICATION_JSON.toString()))
+        .andExpect(header("Content-Type", MediaType.APPLICATION_JSON.toString()))
+        .andExpect(header("ucsb-api-version", "3.0"))
+        .andExpect(header("ucsb-api-key", apiKey))
+        .andRespond(withSuccess(expectedResult, MediaType.APPLICATION_JSON));
+
+    String result = ucs.getFinals(enrollCode, quarter);
+
     assertEquals(expectedResult, result);
   }
 }

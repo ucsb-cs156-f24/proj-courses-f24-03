@@ -48,6 +48,9 @@ public class UCSBCurriculumService {
   public static final String ALL_SECTIONS_ENDPOINT =
       "https://api.ucsb.edu/academics/curriculums/v3/classes/{quarter}/{enrollcode}";
 
+  public static final String FINALS_ENDPOINT =
+      "https://api.ucsb.edu/academics/curriculums/v3/finals/{quarter}/{enrollcode}";
+
   public String getJSON(String subjectArea, String quarter, String courseLevel) throws Exception {
 
     HttpHeaders headers = new HttpHeaders();
@@ -234,6 +237,43 @@ public class UCSBCurriculumService {
     contentType = re.getHeaders().getContentType();
     statusCode = (HttpStatus) re.getStatusCode();
     retVal = re.getBody();
+
+    log.info("json: {} contentType: {} statusCode: {}", retVal, contentType, statusCode);
+    return retVal;
+  }
+
+  /** This method retrieves one finals information */
+  public String getFinals(String enrollCode, String quarter) throws Exception {
+
+    HttpHeaders headers = new HttpHeaders();
+    headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+    headers.setContentType(MediaType.APPLICATION_JSON);
+    headers.set("ucsb-api-version", "3.0");
+    headers.set("ucsb-api-key", this.apiKey);
+
+    HttpEntity<String> entity = new HttpEntity<>("body", headers);
+
+    String url = FINALS_ENDPOINT;
+
+    log.info("url=" + url);
+
+    Map<String, String> params = new HashMap<>();
+    params.put("quarter", quarter);
+    params.put("enrollcode", enrollCode);
+
+    String retVal = "";
+    MediaType contentType = null;
+    HttpStatus statusCode = null;
+
+    ResponseEntity<String> re =
+        restTemplate.exchange(url, HttpMethod.GET, entity, String.class, params);
+    contentType = re.getHeaders().getContentType();
+    statusCode = (HttpStatus) re.getStatusCode();
+    retVal = re.getBody();
+
+    if (retVal.equals("null")) {
+      retVal = "{\"error\": \"Enroll code doesn't exist in that quarter.\"}";
+    }
 
     log.info("json: {} contentType: {} statusCode: {}", retVal, contentType, statusCode);
     return retVal;
