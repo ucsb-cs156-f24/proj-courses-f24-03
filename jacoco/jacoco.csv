@@ -22,7 +22,6 @@ courses,edu.ucsb.cs156.courses.documents,ConvertedSection,0,26,0,0,0,7,0,1,0,1
 courses,edu.ucsb.cs156.courses.documents,Course,0,4,0,0,0,1,0,1,0,1
 courses,edu.ucsb.cs156.courses.documents,TimeLocation,0,3,0,0,0,1,0,1,0,1
 courses,edu.ucsb.cs156.courses.documents,CourseInfo,0,6,0,0,0,2,0,1,0,1
-courses,edu.ucsb.cs156.courses.documents,FinalsFixtures,3,0,0,0,1,0,1,0,1,0
 courses,edu.ucsb.cs156.courses.documents,Instructor,0,3,0,0,0,1,0,1,0,1
 courses,edu.ucsb.cs156.courses.documents,Section,0,6,0,0,0,2,0,1,0,1
 courses,edu.ucsb.cs156.courses.jobs,UpdateCourseDataJobFactory,0,118,0,2,0,18,0,9,0,8
